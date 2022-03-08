@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'; 
+import ControlPanel from './components/ControlPanel.js'
+import Histogram from './components/Histogram.js'
+import {useState} from 'react'
+import {generateHeights} from './HelperFunctions.js'
 
 function App() {
+  const [numBars, setNumBars] = useState(55); 
+  const [pxHeightList, setPxHeightList] = useState(generateHeights(numBars));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ControlPanel pxHeightList = {pxHeightList} setPxHeightList = {setPxHeightList} numBars = {numBars} setNumBars = {setNumBars}/>
+      <Histogram pxHeightList = {pxHeightList} />
     </div>
   );
 }
